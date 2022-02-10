@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Final Ödevi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor='#808080'>
+
+
+<div class="customDiv">
+    <table>
+        <tr style="width: 100%">
+            <td style="text-align: center;padding-left: 2%"><img src="assets/logo.png" width="150px" height="50px"></td>
+            <td style="text-align: center;width: 88%"><h4 style="color: brown">ISTANBUL AYVANSARAY ÜNİVERSİTESİ</h4></td>
+        </tr>
+    </table>
+    <nav id="nav">
+        <ul>
+            <li>
+                <div style="cursor:pointer" onclick="goMesajlar()"><h3>Mesajlar</h3></div>
+            </li>
+            <div class="vl"></div>
+            <li>
+                <div style="cursor:pointer" onclick="goIletisim()"><h3>Iletisim</h3></div>
+            </li>
+        </ul>
+    </nav>
+        <object id="contentType" data='mesajlar.html'></object>
+
+</div>
+
+
+<script>
+
+    var contentType = document.getElementById('contentType');
+
+    function goMesajlar() {
+        contentType.setAttribute('data', 'mesajlar.html');
+    }
+
+    function goIletisim() {
+        contentType.setAttribute('data', 'iletisim.html');
+    }
+
+</script>
+</body>
+</html>

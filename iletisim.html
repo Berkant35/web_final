@@ -1,0 +1,131 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function (e) {
+                if ($("input[id=name]").val().length < 2) {
+                    e.preventDefault();
+                    alert("İsim 2 harften daha düşük olamaz");
+                } else if ($("input[id=soyad]").val().length > 20) {
+                    e.preventDefault();
+                    alert("Soyad 20 karakterden daha fazla olamaz");
+                } else if ($("input[id=phone]").val().length !== 12) {
+                    e.preventDefault();
+                    alert("Telefon numaranızı doğru girdiğinizden emin olun");
+                } else if ($("select[id=konular]").val() === 'seciniz') {
+                    e.preventDefault();
+                    alert("Konu belirtmek zorunludur");
+                } else if ($("input[id=contentID]").val() > 250) {
+                    e.preventDefault();
+                    alert("Mesaj uzunluğu 250 karakterden fazla olamaz");
+                } else {
+                    $('#addForm').bind('submit', function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'api.php',
+                            dataType: 'json',
+                            data: $('#addForm').serialize(),
+                            success: function () {
+                                alert("Yeni kullanıcı eklendi");
+                            },
+                            error: function () {
+                                alert("Bşarısız")
+                            }
+                        });
+                    }).done();
+                }
+            });
+        }).done();
+    </script>
+</head>
+<body>
+<div style="padding: 10%">
+    <form id="addForm" METHOD="POST">
+        <table class="customTable">
+            <tr style="height: 50px;">
+                <td style="height: 50px; width: 14%;text-align: center">Ad</td>
+                <td style="height: 50px; width: 10%;text-align: center">:</td>
+                <td style="height: 50px; width: 72%;text-align: left;padding-left: 4%">
+                    <input style="height: 75%; width: 65%;" type="text" name="ad" id="name">
+                </td>
+            </tr>
+            <tr style="height: 51px;">
+                <td style="height: 51px; width: 14%;">Soyad</td>
+                <td style="height: 51px; width: 10%;">:</td>
+                <td style="height: 51px; width: 72%;text-align: left;padding-left: 4%">
+                    <input name="soyadi" id="soyad" style="height: 75%; width: 65%" type="text">
+                </td>
+            </tr>
+            <tr style="height: 54px;">
+                <td style="height: 54px; width: 14%;">Telefon</td>
+                <td style="height: 54px; width: 10%;">:</td>
+                <td style="height: 54px; width: 72%; text-align: left;padding-left: 4%">
+                    <input style="height: 75%; width: 65%;" id="phone" name="phone">
+                </td>
+            </tr>
+
+            <tr style="height: 42px;">
+                <td style="height: 42px; width: 14%;">Konu</td>
+                <td style="height: 42px; width: 10%;">:</td>
+                <td style="height: 42px; width: 72%; text-align: left;padding-left: 4%">
+                    <select name="konu" id="konular">
+                        <option value="seciniz">-Seçiniz-</option>
+                        <option value="oneri">Öneri</option>
+                        <option value="talep">Talep</option>
+                        <option value="sikayet">Şikayet</option>
+                    </select>
+                </td>
+            </tr>
+            <tr style="height: 200px;">
+                <td style="height: 89px; width: 14%;">Mesaj</td>
+                <td style="height: 89px; width: 10%;">:</td>
+
+                <td style="height: 89px; width: 72%;">
+
+                           <textarea
+                                   name="mesaj"
+                                   onkeyup="textCounter(this,'counter',250);"
+                                   id="contentID"
+                                   class="userInput"
+                                   style="width: 90%; height: 90%;">
+                           </textarea>
+                           <input
+                                    disabled maxlength="3"
+                                    size="3"
+                                    value="250"
+                                    id="counter">
+
+
+                </td>
+
+
+                <script>
+                    function textCounter(field, field2, maxlimit) {
+                        var countfield = document.getElementById(field2);
+                        if (field.value.length > maxlimit) {
+                            field.value = field.value.substring(0, maxlimit);
+                            return false;
+                        } else {
+                            countfield.value = maxlimit - field.value.length;
+                        }
+                    }
+                </script>
+            </tr>
+            <tr style="height: 89px;">
+                <td colspan="3" style="border: none">
+                    <button style="width: 25%; height: 30px;">Gönder</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div style="width: 100%; min-height: 50%; background-color: black">
+    <h4 style="text-align: center; padding-top: 5%;  color: #dddddd"> Bu site BERKANT ÇALIKUŞU tarafından
+        yapılmıştır</h4>
+</div>
+
+</body>
+</html>

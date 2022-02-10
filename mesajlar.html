@@ -1,0 +1,45 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.0.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $.ajax({
+                url: "get_users.php",
+                type: "post",
+                success: function(data) {
+                    $("#usertables").html(data);
+                },
+                error:function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        })
+    </script>
+</head>
+
+<body>
+<div style="min-height: 80%">
+    <table id="usertables" class="customTable">
+        <tr>
+            <td style="height: 50px; width: 5% ;text-align: center;font-weight: bold">Id</td>
+            <td style="height: 50px; width: 12%;text-align: center;font-weight: bold">Ad</td>
+            <td style="height: 50px; width: 12%;text-align: center;font-weight: bold">Soyad</td>
+            <td style="height: 50px; width: 12%;text-align: center;font-weight: bold">Telefon</td>
+            <td style="height: 50px; width: 12%;text-align: center;font-weight: bold">Konu</td>
+            <td style="height: 50px; width: 30%;text-align: center;font-weight: bold">Mesaj</td>
+            <td style="height: 50px; width: 5% ;text-align: center;font-weight: bold">Sil</td>
+            <td style="height: 50px; width: 20%;text-align: center;font-weight: bold">Güncelle</td>
+        </tr>
+    </table>
+    <div style="width: 100%; min-height: 20%;  background-color: black">
+        <h4 style="text-align: center; padding-top: 5%;  color: #dddddd"> Bu site BERKANT ÇALIKUŞU tarafından yapılmıştır</h4>
+    </div>
+</div>
+
+</body>
+</html>
